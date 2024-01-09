@@ -7,24 +7,39 @@
   - name: Update Repositoty Index
     apt:
       update_cache: yes 
+    when:
+      - ansible_distribution == "Ubuntu"
+      - ansible_architecture == "x86_64"
 
   - name: Install Apache Package
     apt:
       name: apache2
       state: latest
+    when:
+      - ansible_distribution == "Ubuntu"
+      - ansible_architecture == "x86_64"
 
   - name: Install Lolcat Package
     apt:
       name: lolcat
       state: latest
+    when:
+      - ansible_distribution == "Ubuntu"
+      - ansible_architecture == "x86_64"
 
   - name: Add PhP support for Apache
     apt:
       name: libapache2-mod-php 
       state: latest
+    when:
+      - ansible_distribution == "Ubuntu"
+      - ansible_architecture == "x86_64"
 
   - name: Install the Htop Package
     apt:
       name: htop
       state: latest  
+    when:
+      - ansible_distribution == "Ubuntu"
+      - ansible_architecture == "x86_64"
 
