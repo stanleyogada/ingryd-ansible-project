@@ -1,0 +1,14 @@
+---
+
+- hosts: all
+  become: true
+  tasks:
+
+  - name: Install Apache Package
+    apt:
+      name: httpd
+
+  - name: Install Lolcat Package
+    apt:
+      name: lolcat
+      
