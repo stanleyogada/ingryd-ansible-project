@@ -6,7 +6,7 @@
 
   - name: Install Apache Package
     apt:
-      name: httpd
+      name: apache2
 
   - name: Install Lolcat Package
     apt:
