@@ -1,0 +1,29 @@
+---
+
+- hosts: all
+  become: true
+  tasks:
+
+  - name: Update Repositoty Index
+    apt:
+      update_cache: yes 
+
+  - name: Install Apache Package
+    apt:
+      name: apache2
+      state: latest
+
+  - name: Install Lolcat Package
+    apt:
+      name: lolcat
+      state: latest
+
+  - name: Add PhP support for Apache
+    apt:
+      name: libapache2-mod-php 
+      state: latest
+
+  - name: Install htop package
+    apt:
+      name: htop 
+      state: latest
