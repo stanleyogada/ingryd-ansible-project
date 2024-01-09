@@ -23,7 +23,8 @@
       name: libapache2-mod-php 
       state: latest
 
-  - name: Install htop package
+  - name: Install the Htop Package
     apt:
-      name: htop 
-      state: latest
+      name: htop
+      state: latest  
+
