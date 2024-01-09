@@ -24,8 +24,7 @@
       name: lolcat
       state: latest
     when:
-      - ansible_distribution == "Ubuntu"
-      - ansible_architecture == "x86_64"
+      - ansible_distribution == "Ubuntu" and ansible_architecture == "x86_64"
 
   - name: Add PhP support for Apache
     apt:
