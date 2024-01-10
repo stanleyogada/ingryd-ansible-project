@@ -41,7 +41,7 @@
 
 # The following are installation for Oracle Linux
   - name: Install Apache, php support and telnet For Oracle Linux
-    tags: apache2,web_server,oracleLinux
+    tags: httpd,web_server,oracleLinux
     dnf:
       name:
         - httpd
@@ -51,8 +51,14 @@
     when:
       - ansible_distribution == "OracleLinux"  
 
-
-
+  - name: Copy Html file for site
+    tags: apache2,httpd,copy
+    copy:
+      src: default_site.html
+      dest: /var/www/html/index.html
+      owner: root
+      group: root
+      mode: 0644
 
 
 # Plays for db servers
@@ -108,3 +114,12 @@
         - nfs-kernel-server
       state: latest
     when: ansible_distribution == "Ubuntu"  
+
+  - name: Copy instruction manual to home dir (OracleLinux, Ubuntu)
+    tags: copy,file_server,exercise2
+    copy:
+      src: instruction_manual.txt
+      dest: /home/zero
+      owner: zero
+      group: zero
+      mode: 0664
