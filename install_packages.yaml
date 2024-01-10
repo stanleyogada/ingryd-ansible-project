@@ -10,33 +10,16 @@
     when:
       - ansible_distribution == "Ubuntu"
 
-  - name: Install Apache Package
+  - name: Install Apache, php support and htop
     apt:
-      name: apache2
+      name:
+        - apache2
+        - libapach2-mod-php
+        - htop
       state: latest
     when:
       - ansible_distribution == "Ubuntu"
 
-  - name: Install Lolcat Package
-    apt:
-      name: lolcat
-      state: latest
-    when:
-      - ansible_distribution == "Ubuntu" and ansible_architecture == "x86_64"
-
-  - name: Add PhP support for Apache
-    apt:
-      name: libapache2-mod-php 
-      state: latest
-    when:
-      - ansible_distribution == "Ubuntu"
-
-  - name: Install the Htop Package
-    apt:
-      name: htop
-      state: latest  
-    when:
-      - ansible_distribution == "Ubuntu"
 
 
 
@@ -46,24 +29,12 @@
       update_cache: yes 
     when: ansible_distribution == "OracleLinux"
        
-  - name: Install Apache Packages For Oracle Linux
+  - name: Install Apache, php support and htop For Oracle Linux
     dnf:
-      name: httpd
+      name:
+        - httpd
+        - php
+        - htop
       state: latest
     when:
-      - ansible_distribution == "OracleLinux"
-     
-  - name: Add PhP support for Apache for Oracle Linux
-    dnf:
-      name: php 
-      state: latest
-    when:
-      - ansible_distribution == "OracleLinux"
-
-  - name: Install the Htop Package for Oracle Linux
-    dnf:
-      name: htop
-      state: latest  
-    when:
-      - ansible_distribution == "OracleLinux"
-
+      - ansible_distribution == "OracleLinux"  
