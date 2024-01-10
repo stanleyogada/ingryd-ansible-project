@@ -1,0 +1,16 @@
+---
+
+- hosts: all
+  become: true
+  tasks:
+
+# The following are installation for Ubuntu
+  - name: Update Repo Index, Install Apache, php support and htop
+    package:
+      update_cache: yes 
+      name:
+        - "{{ apache_package }}"
+        - "{{ php_package }}"
+        - "{{ htop_package }}"
+      state: latest
+
