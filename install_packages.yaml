@@ -5,7 +5,6 @@
   tasks:
 
   - name: Update Repo Index, Install Apache, php support and htop
-      update_cache: yes 
     apt:
       update_cache: yes 
       name:
