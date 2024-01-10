@@ -17,7 +17,7 @@
       - ansible_distribution == "Ubuntu"
 
 
-# The following are installation for OracleLinux
+# The following are installation for Oracle Linux
   - name: Install Apache, php support and htop For Oracle Linux
     dnf:
       update_cache: yes 
