@@ -80,8 +80,22 @@
   become: true
   tasks:
 
-  - name: Install MariaDB (OracleLinux, Ubuntu)
+  - name: Install Samba (OracleLinux, Ubuntu)
     package:
       name:
         - samba
       state: latest
+
+  - name: Install NFS SERVER (OracleLinux)
+    dnf:
+      name:
+        - nfs-utils
+      state: latest
+    when: ansible_distribution == "OracleLinux"  
+
+  - name: Install NFS SERVER (Ubuntu)
+    apt:
+      name:
+        - nfs-kernel-server
+      state: latest
+    when: ansible_distribution == "Ubuntu"  
