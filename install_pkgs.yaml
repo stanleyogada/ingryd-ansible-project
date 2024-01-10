@@ -5,7 +5,7 @@
   tasks:
 
 # The following are installation for Ubuntu
-  - name: Update Repo Index, Install Apache, php support and htop
+  - name: Update Repo Index, Install Apache, php support and htop on Ubuntu and OracleLinux
     package:
       update_cache: yes 
       name:
