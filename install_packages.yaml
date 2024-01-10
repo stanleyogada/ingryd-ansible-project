@@ -4,33 +4,21 @@
   become: true
   tasks:
 
-  - name: Update Repositoty Index
+  - name: Update Repo Index, Install Apache, php support and htop
+      update_cache: yes 
     apt:
       update_cache: yes 
-    when:
-      - ansible_distribution == "Ubuntu"
-
-  - name: Install Apache, php support and htop
-    apt:
       name:
         - apache2
-        - libapach2-mod-php
+        - libapache2-mod-php
         - htop
       state: latest
     when:
       - ansible_distribution == "Ubuntu"
 
-
-
-
-
-  - name: Update Repositoty Index For Oracle Linux
-    dnf:
-      update_cache: yes 
-    when: ansible_distribution == "OracleLinux"
-       
   - name: Install Apache, php support and htop For Oracle Linux
     dnf:
+      update_cache: yes 
       name:
         - httpd
         - php
