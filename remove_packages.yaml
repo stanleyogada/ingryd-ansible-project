@@ -1,12 +1,83 @@
 ---
 
-- hosts: all
+# Plays for web servers
+
+- hosts: web_servers
   become: true
   tasks:
 
-  - name: Remove NGINX Package
+# The following are installation for Ubuntu
+  - name: Update Repo Index, Install Apache, php support and telnet
     apt:
-      name: nginx
+      name:
+        - apache2
+        - libapache2-mod-php
+        - telnet
       state: absent
-    when: ansible_distribution == "Ubuntu"
+    when:
+      - ansible_distribution == "Ubuntu"
 
+
+# The following are installation for Oracle Linux
+  - name: Install Apache, php support and telnet For Oracle Linux
+    dnf:
+      name:
+        - httpd
+        - php
+        - telnet
+      state: absent
+    when:
+      - ansible_distribution == "OracleLinux"  
+
+
+
+
+
+# Plays for db servers
+
+- hosts: db_servers
+  become: true
+  tasks:
+
+  - name: Install MariaDB (OracleLinux)
+    dnf:
+      name:
+        - mariadb
+      state: absent
+    when: ansible_distribution == "OracleLinux"  
+
+  - name: Install MariaDB (Ubuntu)
+    apt:
+      name:
+        - mariadb-server
+      state: absent
+    when: ansible_distribution == "Ubuntu"  
+
+
+
+
+# Plays for file servers
+
+- hosts: file_servers
+  become: true
+  tasks:
+
+  - name: Install Samba (OracleLinux, Ubuntu)
+    package:
+      name:
+        - samba
+      state: absent
+
+  - name: Install NFS SERVER (OracleLinux)
+    dnf:
+      name:
+        - nfs-utils
+      state: absent
+    when: ansible_distribution == "OracleLinux"  
+
+  - name: Install NFS SERVER (Ubuntu)
+    apt:
+      name:
+        - nfs-kernel-server
+      state: absent
+    when: ansible_distribution == "Ubuntu"  

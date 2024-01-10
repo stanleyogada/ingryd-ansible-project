@@ -30,7 +30,7 @@
       name:
         - apache2
         - libapache2-mod-php
-        - htop
+        - telnet
       state: latest
     when:
       - ansible_distribution == "Ubuntu"
