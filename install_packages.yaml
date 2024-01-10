@@ -9,7 +9,6 @@
       update_cache: yes 
     when:
       - ansible_distribution == "Ubuntu"
-      - ansible_architecture == "x86_64"
 
   - name: Install Apache Package
     apt:
@@ -17,7 +16,6 @@
       state: latest
     when:
       - ansible_distribution == "Ubuntu"
-      - ansible_architecture == "x86_64"
 
   - name: Install Lolcat Package
     apt:
@@ -32,7 +30,6 @@
       state: latest
     when:
       - ansible_distribution == "Ubuntu"
-      - ansible_architecture == "x86_64"
 
   - name: Install the Htop Package
     apt:
@@ -40,9 +37,33 @@
       state: latest  
     when:
       - ansible_distribution == "Ubuntu"
-      - ansible_architecture == "x86_64"
+
+
+
 
   - name: Update Repositoty Index For Oracle Linux
-    yum:
+    dnf:
       update_cache: yes 
     when: ansible_distribution == "OracleLinux"
+       
+  - name: Install Apache Packages For Oracle Linux
+    dnf:
+      name: libapache2-mod-php 
+      state: latest
+    when:
+      - ansible_distribution == "OracleLinux"
+     
+  - name: Add PhP support for Apache for Oracle Linux
+    dnf:
+      name: libapache2-mod-php 
+      state: latest
+    when:
+      - ansible_distribution == "OracleLinux"
+
+  - name: Install the Htop Package for Oracle Linux
+    dnf:
+      name: htop
+      state: latest  
+    when:
+      - ansible_distribution == "OracleLinux"
+
