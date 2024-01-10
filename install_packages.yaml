@@ -4,10 +4,21 @@
   become: true
   tasks:
 
+  - name: Install updates (OracleLinux)
+    dnf:
+      update_cache: yes
+      update_only: yes
+    when: ansible_distribution == "OracleLinux"  
+
+
+  - name: Install updates (OracleLinux)
+    dnf:
+      update_cache: yes
+    when: ansible_distribution == "Ubuntu"  
+
 # The following are installation for Ubuntu
   - name: Update Repo Index, Install Apache, php support and htop
     apt:
-      update_cache: yes 
       name:
         - apache2
         - libapache2-mod-php
@@ -20,7 +31,6 @@
 # The following are installation for Oracle Linux
   - name: Install Apache, php support and htop For Oracle Linux
     dnf:
-      update_cache: yes 
       name:
         - httpd
         - php

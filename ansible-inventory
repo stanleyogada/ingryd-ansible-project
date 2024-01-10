@@ -1,3 +1,8 @@
+[web_servers]
 zero@ansible-node1
+
+[db_servers]
 zero@ansible-node2
+
+[file_servers]
 zero@ansible-node3
