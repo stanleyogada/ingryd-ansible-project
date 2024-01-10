@@ -48,14 +48,14 @@
        
   - name: Install Apache Packages For Oracle Linux
     dnf:
-      name: libapache2-mod-php 
+      name: httpd
       state: latest
     when:
       - ansible_distribution == "OracleLinux"
      
   - name: Add PhP support for Apache for Oracle Linux
     dnf:
-      name: libapache2-mod-php 
+      name: php 
       state: latest
     when:
       - ansible_distribution == "OracleLinux"
