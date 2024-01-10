@@ -1,5 +1,5 @@
 ---
-
+# The following with update the Local Repositories for OracleLinux and Ubuntu Servers
 - hosts: all
   become: true
   tasks:
@@ -12,12 +12,20 @@
 
 
   - name: Install updates (OracleLinux)
-    dnf:
+    apt:
       update_cache: yes
     when: ansible_distribution == "Ubuntu"  
 
+
+
+# Plays for web servers
+
+- hosts: web_servers
+  become: true
+  tasks:
+
 # The following are installation for Ubuntu
-  - name: Update Repo Index, Install Apache, php support and htop
+  - name: Update Repo Index, Install Apache, php support and telnet
     apt:
       name:
         - apache2
@@ -29,7 +37,7 @@
 
 
 # The following are installation for Oracle Linux
-  - name: Install Apache, php support and htop For Oracle Linux
+  - name: Install Apache, php support and telnet For Oracle Linux
     dnf:
       name:
         - httpd
@@ -38,3 +46,42 @@
       state: latest
     when:
       - ansible_distribution == "OracleLinux"  
+
+
+
+
+
+# Plays for db servers
+
+- hosts: db_servers
+  become: true
+  tasks:
+
+  - name: Install MariaDB (OracleLinux)
+    dnf:
+      name:
+        - mariadb
+      state: latest
+    when: ansible_distribution == "OracleLinux"  
+
+  - name: Install MariaDB (Ubuntu)
+    apt:
+      name:
+        - mariadb-server
+      state: latest
+    when: ansible_distribution == "Ubuntu"  
+
+
+
+
+# Plays for file servers
+
+- hosts: file_servers
+  become: true
+  tasks:
+
+  - name: Install MariaDB (OracleLinux, Ubuntu)
+    package:
+      name:
+        - samba
+      state: latest
