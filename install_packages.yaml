@@ -4,6 +4,7 @@
   become: true
   tasks:
 
+# The following are installation for Ubuntu
   - name: Update Repo Index, Install Apache, php support and htop
     apt:
       update_cache: yes 
@@ -15,6 +16,8 @@
     when:
       - ansible_distribution == "Ubuntu"
 
+
+# The following are installation for OracleLinux
   - name: Install Apache, php support and htop For Oracle Linux
     dnf:
       update_cache: yes 
