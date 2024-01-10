@@ -24,9 +24,7 @@
       name:
         - httpd
         - php
-        - oracle-epel-release-el8
-        - yum-utils
-        - htop
+        - telnet
       state: latest
     when:
       - ansible_distribution == "OracleLinux"  
