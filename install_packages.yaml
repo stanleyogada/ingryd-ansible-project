@@ -5,6 +5,7 @@
   tasks:
 
   - name: Install updates (OracleLinux)
+    tags: update,oracleLinux
     dnf:
       update_cache: yes
       update_only: yes
@@ -12,6 +13,7 @@
 
 
   - name: Install updates (OracleLinux)
+    tags: update,ubuntu
     apt:
       update_cache: yes
     when: ansible_distribution == "Ubuntu"  
@@ -26,6 +28,7 @@
 
 # The following are installation for Ubuntu
   - name: Update Repo Index, Install Apache, php support and telnet
+    tags: apache2,web_server,ubuntu
     apt:
       name:
         - apache2
@@ -38,6 +41,7 @@
 
 # The following are installation for Oracle Linux
   - name: Install Apache, php support and telnet For Oracle Linux
+    tags: apache2,web_server,oracleLinux
     dnf:
       name:
         - httpd
@@ -58,6 +62,7 @@
   tasks:
 
   - name: Install MariaDB (OracleLinux)
+    tags: mariadb,db_server,oracleLinux
     dnf:
       name:
         - mariadb
@@ -65,6 +70,7 @@
     when: ansible_distribution == "OracleLinux"  
 
   - name: Install MariaDB (Ubuntu)
+    tags: mariadb,db_server,ubuntu
     apt:
       name:
         - mariadb-server
@@ -81,12 +87,14 @@
   tasks:
 
   - name: Install Samba (OracleLinux, Ubuntu)
+    tags: oracleLinux,ubuntu,samba,file_server
     package:
       name:
         - samba
       state: latest
 
   - name: Install NFS SERVER (OracleLinux)
+    tags: oracleLinux,nfs,file_server
     dnf:
       name:
         - nfs-utils
@@ -94,6 +102,7 @@
     when: ansible_distribution == "OracleLinux"  
 
   - name: Install NFS SERVER (Ubuntu)
+    tags: ubuntu,nfs,file_server
     apt:
       name:
         - nfs-kernel-server
