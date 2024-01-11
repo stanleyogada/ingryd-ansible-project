@@ -18,8 +18,13 @@
       update_cache: yes
     when: ansible_distribution == "Ubuntu"  
 
+  - name: Create oga user
+    tags: always
+    user:
+      name: oga
+      groups: root
 
-
+      
 # Plays for web servers
 
 - hosts: web_servers
@@ -71,7 +76,8 @@
   - name: Change email address for admin (OracleLinux)
     tags: apache2,httpd,web_server,oracleLinux
     lineinfile:
-      regepx: '^ServerAdmin'
+      path: /etc/httpd/conf/httpd.conf
+      regexp: '^ServerAdmin'
       line: ServerAdmin chineduogada@gmail.com
     register: httpd
     when: ansible_distribution == "OracleLinux"
