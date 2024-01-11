@@ -1,0 +1,16 @@
+---
+
+- name: Install updates (OracleLinux)
+  tags: update,oracleLinux
+  dnf:
+    update_cache: yes
+    update_only: yes
+  when: ansible_distribution == "OracleLinux"  
+
+
+- name: Install updates (OracleLinux)
+  tags: update,ubuntu
+  apt:
+    update_cache: yes
+  when: ansible_distribution == "Ubuntu"  
+

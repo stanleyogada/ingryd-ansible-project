@@ -1,0 +1,21 @@
+---
+
+
+- name: Install MariaDB (OracleLinux)
+  tags: mariadb,db_server,oracleLinux
+  dnf:
+    name:
+      - mariadb
+    state: latest
+  when: ansible_distribution == "OracleLinux"  
+
+- name: Install MariaDB (Ubuntu)
+  tags: mariadb,db_server,ubuntu
+  apt:
+    name:
+      - mariadb-server
+    state: latest
+  when: ansible_distribution == "Ubuntu"  
+
+
+

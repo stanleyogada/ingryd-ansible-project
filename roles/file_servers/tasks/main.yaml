@@ -1,0 +1,49 @@
+---
+# Plays for file servers
+
+
+- name: Install Samba (OracleLinux, Ubuntu)
+  tags: oracleLinux,ubuntu,samba,file_server
+  package:
+    name:
+      - samba
+    state: latest
+
+- name: Install NFS SERVER (OracleLinux)
+  tags: oracleLinux,nfs,file_server
+  dnf:
+    name:
+      - nfs-utils
+    state: latest
+  when: ansible_distribution == "OracleLinux"  
+
+- name: Install NFS SERVER (Ubuntu)
+  tags: ubuntu,nfs,file_server
+  apt:
+    name:
+      - nfs-kernel-server
+    state: latest
+  when: ansible_distribution == "Ubuntu"  
+
+- name: Copy instruction manual to home dir (OracleLinux, Ubuntu)
+  tags: copy,file_server,exercise2
+  copy:
+    src: instruction_manual.txt
+    dest: /home/zero
+    owner: zero
+    group: zero
+    mode: 0664
+
+- name: Install Unzip
+  tags: copy,file_server
+  package:
+    name: unzip
+
+- name: Install OpenToFu
+  unarchive:
+    src: https://github.com/opentofu/opentofu/releases/download/v1.6.0-rc1/tofu_1.6.0-rc1_darwin_arm64.zip
+    dest: /usr/local/bin
+    remote_src: yes
+    owner: root
+    group: root
+    mode: 0755

@@ -1,0 +1,63 @@
+---
+# Plays for web servers
+
+
+# The following are installation for Ubuntu
+- name: Update Repo Index, Install Apache, php support and telnet
+  tags: apache2,web_server,ubuntu
+  apt:
+    name:
+      - apache2
+      - libapache2-mod-php
+      - telnet
+    state: latest
+  when:
+    - ansible_distribution == "Ubuntu"
+
+
+# The following are installation for Oracle Linux
+- name: Install Apache, php support and telnet For Oracle Linux
+  tags: httpd,web_server,oracleLinux
+  dnf:
+    name:
+      - httpd
+      - php
+      - telnet
+    state: latest
+  when:
+    - ansible_distribution == "OracleLinux"  
+
+- name: Copy Html file for site
+  tags: apache2,httpd,copy
+  copy:
+    src: default_site.html
+    dest: /var/www/html/index.html
+    owner: root
+    group: root
+    mode: 0644
+
+- name: Start Httpd (OracleLinux)
+  tags: apache2,httpd,oracleLinux
+  when: ansible_distribution == "OracleLinux"
+  service:
+    name: httpd
+    state: started
+    enabled: yes
+
+- name: Change email address for admin (OracleLinux)
+  tags: apache2,httpd,web_server,oracleLinux
+  lineinfile:
+    path: /etc/httpd/conf/httpd.conf
+    regexp: '^ServerAdmin'
+    line: ServerAdmin chineduogada@gmail.com
+  register: httpd
+  when: ansible_distribution == "OracleLinux"
+
+
+- name: Restart Http (OracleLinux)
+  tags: apache2,httpd,web_server,oracleLinux
+  service:
+    name: httpd
+    state: restarted
+  when: httpd.changed
+
