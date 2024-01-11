@@ -29,6 +29,14 @@
     authorized_key:
       user: oga
       key: "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILaBU7Fk2Q1dRj3IgqA+rc2eRxdKdr3nbXVUtSq/my9/ ingryd-ansible-project"
+  - name: Add oga to sudoers file
+    tags: always
+    copy:
+      src: sudoer_oga
+      dest: /etc/sudoers.d/oga
+      owner: root
+      group: root
+      mode: 0440
 
 # Plays for web servers
 
