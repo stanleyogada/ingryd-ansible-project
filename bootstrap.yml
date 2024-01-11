@@ -10,7 +10,7 @@
     user:
       name: oga
       groups: root
-      shell: /bin/bash:x
+      shell: /bin/bash
  
   - name: Add oga to sudoers file
     tags: always
