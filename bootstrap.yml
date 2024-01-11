@@ -4,31 +4,11 @@
   become: true
   tasks:
 
-  - name: Install updates (OracleLinux)
-    tags: update,oracleLinux
-    dnf:
-      update_cache: yes
-      update_only: yes
-    when: ansible_distribution == "OracleLinux"  
-
-
-  - name: Install updates (OracleLinux)
-    tags: update,ubuntu
-    apt:
-      update_cache: yes
-    when: ansible_distribution == "Ubuntu"  
 
   - name: Create oga user
     tags: always,user
     user:
       name: oga
-      groups: root
-      shell: /bin/bash
-
-  - name: Create test user
-    tags: always,user
-    user:
-      name: test2
       groups: root
       shell: /bin/bash
 
