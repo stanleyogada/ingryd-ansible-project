@@ -68,6 +68,21 @@
       state: started
       enabled: yes
 
+  - name: Change email address for admin (OracleLinux)
+    tags: apache2,httpd,web_server,oracleLinux
+    lineinfile:
+      regepx: '^ServerAdmin'
+      line: ServerAdmin chineduogada@gmail.com
+    register: httpd
+    when: ansible_distribution == "OracleLinux"
+
+
+  - name: Restart Http (OracleLinux)
+    tags: apache2,httpd,web_server,oracleLinux
+    service:
+      name: httpd
+      state: restarted
+    when: httpd.changed
 
 # Plays for db servers
 
