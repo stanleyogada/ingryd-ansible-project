@@ -1,0 +1,14 @@
+---
+
+- hosts: all
+  become: true
+  tasks:
+
+  - name: Add bash as default shell for all users
+    replace:
+      path: /etc/passwd
+      regexp: '/bin/sh'
+      replace: "/bin/bash"
+      backup: yes 
+
+  
