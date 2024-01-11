@@ -5,6 +5,25 @@
   roles:
     - base 
 
+# The below plays update all servers
+
+- hosts: all
+  become: true
+  tasks:
+
+  - name: Install updates (OracleLinux)
+    tags: update,oracleLinux
+    dnf:
+      update_cache: yes
+      update_only: yes
+    when: ansible_distribution == "OracleLinux"  
+
+
+  - name: Install updates (Ubuntu)
+    tags: update,ubuntu
+    apt:
+      update_cache: yes
+    when: ansible_distribution == "Ubuntu" 
  
 # Plays for web servers
 
@@ -27,3 +46,6 @@
   become: true
   roles:
     - file_servers
+
+ 
+

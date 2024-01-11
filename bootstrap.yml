@@ -10,15 +10,8 @@
     user:
       name: oga
       groups: root
-      shell: /bin/bash
-
-
-  - name: Add ssh keys for oga user
-    tags: always
-    authorized_key:
-      user: oga
-      key: "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILaBU7Fk2Q1dRj3IgqA+rc2eRxdKdr3nbXVUtSq/my9/ ingryd-ansible-project"
-  
+      shell: /bin/bash:x
+ 
   - name: Add oga to sudoers file
     tags: always
     copy:
