@@ -5,6 +5,8 @@
 
 This Ansible project is designed to automate the configuration and management of servers running Oracle Linux and Ubuntu. It includes roles and plays for updating local repositories, performing system updates, and configuring different types of servers such as web servers, database servers, and file servers.
 
+**Author: Stanley Chinedu Ogada**
+
 ## Project Structure
 
 - `roles/`
@@ -93,3 +95,5 @@ Before running the playbooks, ensure the following prerequisites are met:
 - Customize variables and configurations in roles based on your specific requirements.
 
 Feel free to contribute to this Ansible project or raise issues if you encounter any problems. Happy automating!
+
+*Note: This documentation was authored by Stanley Chinedu Ogada. If you have any questions or encounter issues, feel free to reach out for personalized assistance.*
