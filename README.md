@@ -8,12 +8,32 @@ This Ansible project is designed to automate the configuration and management of
 ## Project Structure
 
 - `roles/`
-  - `base/`: Role for updating public key of the `oga` user.
+  - `base/`: Role for updating the public key of the `oga` user.
   - `web_servers/`: Role for configuring web servers.
   - `db_servers/`: Role for configuring database servers.
   - `file_servers/`: Role for configuring file servers.
 
-- `playbook.yml`: Main Ansible playbook containing plays for updating repositories, updating all servers, and configuring specific server types.
+- `sys_config.yml`: Main Ansible playbook containing plays for updating repositories, updating all servers, and configuring specific server types.
+
+## Prerequisites for One-Time Success Run
+
+Before running the playbooks, ensure the following prerequisites are met:
+
+1. **User Setup:**
+   - Create a user named `zero` on all target servers with sudo access.
+   - Ensure that the password for the `zero` user is the same across all servers.
+
+2. **SSH Public Key Authentication:**
+   - Set up SSH public key authentication from the control host to each server for the `zero` user.
+   - Make sure that the control host can SSH into each server without entering a password.
+
+3. **Ad-Hoc Command Password:**
+   - When using Ansible ad-hoc commands, provide the `--ask-become` or `-K` option to enter the sudo password for the `zero` user.
+   ```bash
+   ansible-playbook bootstrap.yml ays_config.yml -K
+   ```
+   - Run the above ad-hoc once hence the name bootstrap
+   - After a successful run you may remove the `-K` as the user called `oga` is now the active remote user and doesn’t require password to use sudo
 
 ## Usage
 
