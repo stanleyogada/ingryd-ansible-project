@@ -8,7 +8,7 @@ This Ansible project is designed to automate the configuration and management of
 ## Project Structure
 
 - `roles/`
-  - `base/`: Role for updating local repositories.
+  - `base/`: Role for updating public key of the `oga` user.
   - `web_servers/`: Role for configuring web servers.
   - `db_servers/`: Role for configuring database servers.
   - `file_servers/`: Role for configuring file servers.
