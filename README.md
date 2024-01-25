@@ -19,7 +19,7 @@ This Ansible project is designed to automate the configuration and management of
 
 1. Ensure Ansible is installed on the control machine.
    ```bash
-   pip install ansible
+   apt install ansible
    ```
 
 2. Clone the repository.
