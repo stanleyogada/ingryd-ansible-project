@@ -14,6 +14,7 @@ This Ansible project is designed to automate the configuration and management of
   - `file_servers/`: Role for configuring file servers.
 
 - `sys_config.yml`: Main Ansible playbook containing plays for updating repositories, updating all servers, and configuring specific server types.
+- `bootstrap.yml`: Create the `oga` user, add him to sudoers, and finally make him run sudo commands with a password, thus eliminating the `-K` in ansible ad-hoc commands
 
 ## Prerequisites for One-Time Success Run
 
@@ -33,7 +34,7 @@ Before running the playbooks, ensure the following prerequisites are met:
    ansible-playbook bootstrap.yml ays_config.yml -K
    ```
    - Run the above ad-hoc once hence the name bootstrap
-   - After a successful run you may remove the `-K` as the user called `oga` is now the active remote user and doesn’t require password to use sudo
+   - After a successful run you may remove the `-K` as the user called `oga` is now the active remote user and doesn’t require a password to use sudo
 
 ## Usage
 
